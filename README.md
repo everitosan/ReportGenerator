@@ -1,6 +1,6 @@
-# generator
+# Report generator
 
-> A Vue.js project
+> A Vue.js project to generate reports for IMER and IPN of social service.
 
 ## Build Setup
 
