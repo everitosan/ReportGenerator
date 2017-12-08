@@ -1,0 +1,89 @@
+<template lang="pug">
+  div
+    .hero.is-info
+      .hero-body
+        h1.title
+          | Datos generales
+        h2.subtitle
+          | Ingresa los datos que serán usados para los reportes.
+    .section
+
+      .columns
+        .column
+          .label Nombre completo
+          input.input(
+            type="text"
+            v-model="user.name"
+            placeholder="Everardo Sánchez Hernández")
+        .column
+          .label Registro
+          input.input(
+            type="text"
+            placeholder="973198798"
+            v-model="user.register")
+      .columns
+        .column
+          .label Area de adscripción
+          input.input(
+            type="text"
+            v-model="user.area"
+            placeholder="Area")
+      .columns
+        .column.is-9
+          .label Institución Educativa
+          input.input(
+            type="text"
+            v-model="user.school")
+        .column
+          .label Boleta
+          input.input(
+            type="text"
+            v-model="user.schoolId")
+
+      .columns
+        .column
+          .label Fecha de Inicio
+          input.input(
+            type="text"
+            v-model="user.dateStart")
+        .column
+          .label Fecha de Término
+          input.input(
+            type="text"
+            v-model="user.dateEnd")
+        .column
+          .label Hora de entrada
+          input.input(
+            type="text"
+            v-model="user.initHour")
+        .column
+          .label Hora de Salida
+          input.input(
+            type="text"
+            v-model="user.finishHour")
+      .columns
+        .column
+          button.button.is-info(@click="updateInfo()") Guardar
+</template>
+
+<script>
+import { mapState } from 'vuex';
+
+export default {
+  name: 'Home',
+  computed: {
+    ...mapState(['user']),
+  },
+  methods: {
+    updateInfo() {
+      this.$store.commit('setUserData', this.user);
+    },
+  },
+};
+</script>
+
+<style lang="stylus">
+.label
+  text-transform: uppercase
+  font-size: 14px
+</style>
