@@ -31,6 +31,9 @@ export default {
   vertical-align: middle
   width: 5px
 .icon
+  opacity: 0.8
+  float: right
   i
     cursor: pointer
+    opacity: 1
 </style>

@@ -47,25 +47,25 @@
 
 <script>
 import Report from '@/classes/Report';
-import DateCalculator from '@/classes/DateCalculator';
+import DaysCalculator from 'dayscalculator';
 import { mapState } from 'vuex';
 
 export default {
   name: 'Asistencia',
   computed: {
-    ...mapState(['user', 'boss']),
+    ...mapState(['user', 'institution']),
     reportDetails: function reportDetails() {
       const myDate = new Date();
       return {
         month: myDate.getMonth(),
         year: myDate.getFullYear(),
-        monthFinish: DateCalculator.getMonthDays(myDate.getFullYear(), myDate.getMonth()),
+        monthFinish: DaysCalculator.getMonthDays(myDate.getMonth(), myDate.getFullYear()),
       };
     },
   },
   data() {
     return {
-      months: DateCalculator.months,
+      months: DaysCalculator.months,
       notValid: '',
       hoursCounter: 0,
       monthInit: 1,
@@ -73,9 +73,9 @@ export default {
   },
   methods: {
     updateMonthFinish() {
-      const days = DateCalculator.getMonthDays(
-        this.reportDetails.year,
-        this.reportDetails.month);
+      const days = DaysCalculator.getMonthDays(
+        this.reportDetails.month,
+        this.reportDetails.year);
       this.reportDetails.monthFinish = days;
       this.$forceUpdate();
     },
@@ -99,7 +99,7 @@ export default {
       report.writeHeadData(this.user);
       report.writeMonth(currentMonth);
 
-      const ableDays = DateCalculator.getAbleDays(
+      const ableDays = DaysCalculator.getAbleDays(
         firstDayDate,
         this.monthInit,
         this.reportDetails.monthFinish,
@@ -122,7 +122,7 @@ export default {
         report.writeEndIPN(
           hoursOfThisMonth,
           parseInt(this.hoursCounter, 10) + hoursOfThisMonth,
-          this.boss);
+          this.institution.boss);
       }
 
       report.show();
@@ -132,8 +132,6 @@ export default {
 </script>
 
 <style lang="stylus">
-.hide
-  display: none
 .center
   text-align: center
 </style>

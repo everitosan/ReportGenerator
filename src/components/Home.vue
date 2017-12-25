@@ -22,13 +22,6 @@
             placeholder="973198798"
             v-model="user.register")
       .columns
-        .column
-          .label Area de adscripción
-          input.input(
-            type="text"
-            v-model="user.area"
-            placeholder="Area")
-      .columns
         .column.is-9
           .label Institución Educativa
           input.input(
@@ -40,6 +33,43 @@
             type="text"
             v-model="user.schoolId")
 
+      .columns
+        .column
+          .label Carrera
+          input.input(
+            type="text"
+            v-model="user.carreer")
+        .column
+          .label Teléfono
+          input.input(
+            type="text"
+            v-model="user.telephone")
+        .column
+          .label Email
+          input.input(
+            type="text"
+            v-model="user.email")
+
+      .columns
+        .column
+          .label Nombre de la institución
+          input.input(
+            type="text"
+            v-model="institution.name")
+
+      .columns
+        .column
+          .label Area de adscripción
+          input.input(
+            type="text"
+            v-model="user.area"
+            placeholder="Area")
+        .column
+          .label Nombre del proyecto
+          input.input(
+            type="text"
+            v-model="institution.program"
+            placeholder="Area")
       .columns
         .column
           .label Fecha de Inicio
@@ -61,6 +91,31 @@
           input.input(
             type="text"
             v-model="user.finishHour")
+
+      .columns
+        .column
+          .label Responsable del área
+          input.input(
+            type="text"
+            v-model="institution.internBoss.name")
+        .column.is-6
+          .label Puesto
+          input.input(
+            type="text"
+            v-model="institution.internBoss.position")
+
+      .columns
+        .column
+          .label Responsable del área
+          input.input(
+            type="text"
+            v-model="institution.boss.name")
+        .column.is-6
+          .label Puesto
+          input.input(
+            type="text"
+            v-model="institution.boss.position")
+
       .columns
         .column
           button.button.is-info(@click="updateInfo()") Guardar
@@ -72,7 +127,7 @@ import { mapState } from 'vuex';
 export default {
   name: 'Home',
   computed: {
-    ...mapState(['user']),
+    ...mapState(['user', 'institution']),
   },
   methods: {
     updateInfo() {

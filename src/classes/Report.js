@@ -50,6 +50,76 @@ export default class Report {
     }
   }
 
+  writeActivityHead(data) {
+    this.DOC.setFontSize(10);
+    if (this.type === 'IMER') {
+      this.DOC.text(data.user.name.toUpperCase(), 50, 53);
+      this.DOC.text(data.user.area.toUpperCase(), 55, 60);
+      this.DOC.text(data.institution.program.toUpperCase(), 113, 68);
+      this.DOC.text(data.institution.boss.name.toUpperCase(), 82, 76);
+      this.DOC.text(data.report.monthName.toUpperCase(), 105, 98);
+      this.DOC.text(data.report.year.toUpperCase(), 150, 98);
+    } else if (this.type === 'IPN') {
+      this.DOC.text(data.report.number.toString(), 180, 57);
+      this.DOC.text(data.user.carreer.toUpperCase(), 45, 76);
+      this.DOC.text(data.report.startDate, 130, 76);
+      this.DOC.text(data.report.month, 138, 76);
+      this.DOC.text(data.report.year, 146, 76);
+      this.DOC.text(data.report.endDate, 167, 76);
+      this.DOC.text(data.report.month, 175, 76);
+      this.DOC.text(data.report.year, 183, 76);
+
+      this.DOC.text(data.user.telephone.toUpperCase(), 73, 88.6);
+      this.DOC.text(data.user.name.toUpperCase(), 68, 101);
+      this.DOC.text(data.user.id.toUpperCase(), 168, 101);
+
+      this.DOC.text(data.user.email.toUpperCase(), 100, 113);
+
+      this.DOC.text(data.institution.name.toUpperCase(), 125, 125.5);
+      this.DOC.setFontSize(7);
+      this.DOC.text(data.institution.boss.name.toUpperCase(), 48, 150);
+      this.DOC.text(data.institution.boss.position.toUpperCase(), 138, 150);
+
+      this.DOC.text(data.institution.boss.name.toUpperCase(), 33, 274);
+      this.DOC.text(data.institution.boss.position.toUpperCase(), 22, 278);
+
+      this.DOC.setFontSize(10);
+      this.DOC.text(data.report.deliverDate.day, 140, 230.2);
+      this.DOC.text(data.report.deliverDate.month, 154, 230.2);
+      this.DOC.text(data.report.deliverDate.year, 185, 230.2);
+    }
+  }
+
+  writeActivitiesList(list) {
+    this.DOC.setFontSize(10);
+    let max = 0;
+    let posY = 0;
+    let posX = 0;
+    let index = 0;
+
+    if (this.type === 'IMER') {
+      max = 16;
+      posY = 105.5;
+      posX = 18;
+    } else if (this.type === 'IPN') {
+      max = 5;
+      posY = 181;
+      posX = 34;
+    }
+    Object.keys(list).forEach((actIndex) => {
+      index += 1;
+      if (index <= max) {
+        const activity = list[actIndex];
+        this.DOC.text(activity.name, posX, posY);
+        if (this.type === 'IMER') {
+          posY += 7;
+        } else if (this.type === 'IPN') {
+          posY += 6;
+        }
+      }
+    });
+  }
+
   getImageUrl(imgDomEl) {
     const ctx = this.canvas.getContext('2d');
 
