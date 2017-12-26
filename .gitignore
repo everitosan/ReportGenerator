@@ -1,6 +1,7 @@
 .DS_Store
 node_modules/
-dist/index.html-e
+*.html-e
+*.js-e
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*

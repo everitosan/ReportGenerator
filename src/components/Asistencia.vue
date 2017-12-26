@@ -1,5 +1,6 @@
 <template lang="pug">
   div
+    Popup(:onFinish="saveReport")
     img(id="asisIMER" class="hide" src="../assets/ASISTENCIAIMER_min.jpg")
     img(id="asisIPN" class="hide" src="../assets/ASISTENCIAIPN_min.jpg")
 
@@ -48,6 +49,7 @@
 <script>
 import Report from '@/classes/Report';
 import DaysCalculator from 'dayscalculator';
+import Popup from '@/components/pop-up';
 import { mapState } from 'vuex';
 
 export default {
@@ -72,16 +74,9 @@ export default {
     };
   },
   methods: {
-    updateMonthFinish() {
-      const days = DaysCalculator.getMonthDays(
-        this.reportDetails.month,
-        this.reportDetails.year);
-      this.reportDetails.monthFinish = days;
-      this.$forceUpdate();
-    },
-    generateReport(type) {
-      const nameReport = `Asistencia ${type} ${this.months[this.reportDetails.month]}-${this.reportDetails.year}`;
-      const report = new Report(nameReport, type);
+    saveReport() {
+      const nameReport = `Asistencia ${this.type} ${this.months[this.reportDetails.month]}-${this.reportDetails.year}`;
+      const report = new Report(nameReport, this.type);
       const currentMonth = this.months[this.reportDetails.month];
       let hoursOfThisMonth = 0;
       const firstDayDate = new Date(
@@ -91,9 +86,9 @@ export default {
         0, 0, 0, 0);
       const notValidDays = this.notValid.split(',');
 
-      if (type === 'IMER') {
+      if (this.type === 'IMER') {
         report.writeBackground(document.querySelector('#asisIMER'));
-      } else if (type === 'IPN') {
+      } else if (this.type === 'IPN') {
         report.writeBackground(document.querySelector('#asisIPN'));
       }
       report.writeHeadData(this.user);
@@ -118,7 +113,7 @@ export default {
         });
       });
 
-      if (type === 'IPN') {
+      if (this.type === 'IPN') {
         report.writeEndIPN(
           hoursOfThisMonth,
           parseInt(this.hoursCounter, 10) + hoursOfThisMonth,
@@ -127,7 +122,19 @@ export default {
 
       report.show();
     },
+    updateMonthFinish() {
+      const days = DaysCalculator.getMonthDays(
+        this.reportDetails.month,
+        this.reportDetails.year);
+      this.reportDetails.monthFinish = days;
+      this.$forceUpdate();
+    },
+    generateReport(type) {
+      this.type = type;
+      this.$store.commit('setCaptchaShow', true);
+    },
   },
+  components: { Popup },
 };
 </script>
 
