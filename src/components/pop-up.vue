@@ -3,9 +3,10 @@
   .modal-background
   .modal-content
     .head
-      h3 Verifica!
+      h2 Solo un paso más!
     .content
       p Porfavor haz click en el captcha, eso nos ayuda a seguir con el proyecto.
+      p Al terminar, se descargará tu reporte listo para imprimir.
       div(v-if="!captcha.hashed")
         coinhiveCaptcha(:onFinish="closeModal")
 </template>
