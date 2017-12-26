@@ -7,6 +7,6 @@ then
   exit 1
 fi
 npm run build
-sed -i -e 's/static/ReportGenerator\/static/g' ./$1/static/js/app.*.js
+sed -i -e 's/static\/img/ReportGenerator\/static\/img/g' ./$1/static/js/app.*.js
 sed -i -e 's/\/static/static/g' ./$1/index.html
 git subtree push --prefix $1 origin gh-pages
