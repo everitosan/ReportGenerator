@@ -1,7 +1,7 @@
 <template lang="pug">
   .navbar.is-black
     .navbar-brand
-      router-link.navbar-item(to="/") ∫
+      router-link.navbar-item(to="/") ∫ Inicio
       .navbar-burger.burger(data-target="mainMenu" @click="toggleMenu()" :class="{ 'is-active': showMenu }")
         span
         span
