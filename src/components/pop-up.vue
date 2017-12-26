@@ -43,4 +43,12 @@ export default {
   text-align: center
   border-radius: 10px
   padding: 1em
+  .head
+    font-size: 1.2em
+    text-transform: uppercase
+    margin: 1em 0
+  .content
+    margin-top: 1em
+    p
+      line-height: 8px
 </style>
