@@ -2,6 +2,12 @@
 
 > A Vue.js project to generate reports for IMER and IPN of social service.
 
+Para hacer deploy a github pages puede usar el script "deploy.sh" el primer parámetro es el directorio de distribución y el segundo la versión a subir.
+
+```sh
+./deploy.sh dist 1.x
+```
+
 ## Build Setup
 
 ``` bash
