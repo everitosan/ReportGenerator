@@ -31,6 +31,7 @@
           .label Boleta
           input.input(
             type="text"
+            placeholder="2088350634"
             v-model="user.schoolId")
 
       .columns
