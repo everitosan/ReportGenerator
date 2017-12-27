@@ -71,7 +71,7 @@ export default class Report {
 
       this.DOC.text(data.user.telephone.toUpperCase(), 73, 88.6);
       this.DOC.text(data.user.name.toUpperCase(), 68, 101);
-      this.DOC.text(data.user.id.toUpperCase(), 168, 101);
+      this.DOC.text(data.user.schoolId.toUpperCase(), 168, 101);
 
       this.DOC.text(data.user.email.toUpperCase(), 100, 113);
 
