@@ -5,7 +5,10 @@
         h1.title
           | Datos generales
         h2.subtitle
-          | Ingresa los datos que serán usados para los reportes.
+          p
+            | Ingresa los datos que serán usados para los reportes.
+            br
+            | Recuerda usar el botón de guardar para que la información perdure en el navegador.
     .section
 
       .columns
@@ -44,6 +47,7 @@
           .label Teléfono
           input.input(
             type="text"
+            placeholder="40128869"
             v-model="user.telephone")
         .column
           .label Email
