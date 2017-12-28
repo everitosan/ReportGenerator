@@ -50,5 +50,5 @@ export default {
   .content
     margin-top: 1em
     p
-      line-height: 8px
+      line-height: 20px
 </style>
