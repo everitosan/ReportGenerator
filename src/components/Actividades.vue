@@ -67,6 +67,13 @@ import Report from '@/classes/Report';
 import { mapState } from 'vuex';
 import DaysCalculator from 'dayscalculator';
 
+function fixMonthDayString(current) {
+  if (current <= 9) {
+    return `0${current}`;
+  }
+  return current;
+}
+
 export default {
   name: 'Actividades',
   computed: {
@@ -74,7 +81,7 @@ export default {
     computedDeliverDate: {
       get: function getDeliverDate() {
         const nD = new Date();
-        const today = `${nD.getFullYear()}-${nD.getMonth() + 1}-${nD.getDate()}`;
+        const today = `${nD.getFullYear()}-${nD.getMonth().toString() + 1}-${fixMonthDayString(nD.getDate())}`;
         this.deliverDate = today;
         return today;
       },
@@ -107,7 +114,7 @@ export default {
       },
       get: function getStartDate() {
         const today = new Date();
-        const start = `${today.getFullYear()}-${today.getMonth() + 1}-01`;
+        const start = `${today.getFullYear()}-${today.getMonth().toString() + 1}-01`;
         this.startDate = start;
         return start;
       },
@@ -116,7 +123,7 @@ export default {
       get: function getStartDate() {
         const today = new Date();
         const finalDay = DaysCalculator.getMonthDays(today.getMonth(), today.getFullYear());
-        const end = `${today.getFullYear()}-${today.getMonth() + 1}-${finalDay}`;
+        const end = `${today.getFullYear()}-${today.getMonth().toString() + 1}-${finalDay}`;
         this.endDate = end;
         return end;
       },
