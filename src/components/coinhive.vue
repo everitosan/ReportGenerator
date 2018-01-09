@@ -1,7 +1,7 @@
 <template lang="pug">
 form(action="?" method="post")
   div.coinhive-captcha(
-    data-hashes="1024"
+    data-hashes="512"
     data-key="6cNg5YJlj3Z4eLJOheDgWK8yaNdyDEwA"
     data-callback="finish")
     em
